@@ -1,7 +1,7 @@
 #PADEN JOHNSON 
 #9/12/2021
 
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import subprocess
@@ -9,6 +9,7 @@ import subprocess
 remote = "129.21.3.17"
 url = "www.google.com"
 
+#Clear Console
 os.system("clear")
 
 print("NETWORK CONNECTIVITY TEST")
@@ -17,7 +18,7 @@ print("...I AM HERE TO HELP")
 print("One moment please!")
 print()
 
-#Ping the gateway - Find gateway using system function
+#Ping the gateway - Find gateway using route
 print("Gateway connection: ")
 
 default = os.system("route -n | grep 'G[ \t]' | awk '{print $2}'")
