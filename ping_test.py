@@ -22,7 +22,7 @@ print("Gateway connection: ")
 
 default = os.system("route -n | grep 'G[ \t]' | awk '{print $2}'")
 
-gatetest = subprocess.run(["ping", str(default)])
+gatetest = subprocess.run(["ping", "-c 3", str(default)], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 if gatetest.returncode == 0:
     print("FUNCTIONAL")
@@ -34,7 +34,7 @@ print()
 #Ping the remote IP
 print("Remote IP connection: ")
 
-remotetest = subprocess.run(["ping", remote])
+remotetest = subprocess.run(["ping", "-c 3", remote], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 if remotetest.returncode == 0:
     print("FUNCTIONAL")
@@ -46,7 +46,7 @@ print()
 #Ping URL
 print("DNS connection: ")
 
-dnstest = subprocess.run(["ping", url])
+dnstest = subprocess.run(["ping", "-c 3", url], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 if dnstest.returncode == 0:
     print("FUNCTIONAL")
