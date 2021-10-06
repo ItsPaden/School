@@ -9,8 +9,8 @@ message = "Remove from system."
 
 with open("/etc/passwd") as file:
     for line in file:
-        #For testing I had to change the index to 3 rather than 2, I assume this is either debian specific or an initial mistake
-        if int(line.split(":")[3]) > 1000 and int(line.split(":")[3]) < 2000:
+        #For testing I had to change the /etc/passwd index to 3 rather than 2, I assume this is just debian specific
+        if int(line.split(":")[2]) > 1000 and int(line.split(":")[2]) < 2000:
             user = line.split(":")[0]
             command = "sudo userdel -r -f " + user
             print("{:15s} {:20s}".format(user, message))
