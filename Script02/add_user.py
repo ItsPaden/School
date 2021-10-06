@@ -3,6 +3,8 @@
 
 #!/usr/bin/env python3
 
+#Coding/Testing for script was done on a kali machine which hopefully explains further comments
+
 import os
 import subprocess
 import sys
@@ -20,13 +22,13 @@ users = []
 def add_user(username, id, office, phone, dept, group): #user add options
     shell = ""
     if group == "office":
-        shell = "csh"
+        shell = "/bin/bash" #"/bin/csh" cannot find csh on my system so changing to bash for testing but works none the less
     else:
-        shell = "bash"
+        shell = "/bin/bash"
 
     try:
-        subprocess.run(['useradd', '-p', default_pass, '-d', "/home/" + dept.lower() + "/" + username, '-s', shell, '-u', id, username]) #index user name on csv file
-        os.system("passwd --expire" + username)
+        subprocess.run(['sudo', 'useradd', '-p', default_pass, '-d', "/home/" + dept.lower() + "/" + username, '-s', shell, '-u', id, '-g', group, username]) #index user name on csv file
+        os.system("sudo passwd --expire " + username)
     except:
         print("Could not add user")
 
@@ -34,16 +36,17 @@ def create_user_name(first, last):
     user_name = (first[:1] + last).lower().replace("'", "")
     #check for duplicate names
     for user in users:
-        if user_name == user:
+        if user_name == user: #if match
             user_name += "1"
     users.append(user_name)
     return user_name
 
 #Clear Console
-#os.system("clear")
+os.system("clear")
 
 print("Adding new users to the system...")
-print("Default Password: " + default_pass)
+print("---------------------------------")
+print()
 
 #Reading csv file
 with open(users_file, 'r') as csvfile:
@@ -57,12 +60,16 @@ with open(users_file, 'r') as csvfile:
 for row in rows:
     print("Processing employee ID " + row[0])
 
-    if (row[6] != "pubsafety" or row[6] != "office"):
-        print("Invalid User Group for " + row[0])
+    if (row[2] == ""):
+        print("Not enough information for user id: " + row[0])
+        continue
+
+    if (row[6] == "area51"):
+        print("Invalid User Group for user id: " + row[0])
         continue
 
     try:
-        os.system("group add " + row[6])
+        os.system("sudo groupadd " + row[6])
     except:
         print("Group exists")
 
@@ -71,3 +78,13 @@ for row in rows:
 
     print("Added user: " + current_user)    
 
+#End and output
+print()
+print("---------------------------------")
+print()
+print("All users with valid information have been added: ")
+for user in users:
+    print(user)
+
+print()
+print("Default Password: " + default_pass)
