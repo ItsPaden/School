@@ -53,7 +53,7 @@ def summary_report():
     for x in found_links:
         print(x)
 
-    print("Total number of links: " + len(found_links))
+    print("Total number of links: " + str(len(found_links)))
 
 #Clear Console
 os.system("clear")
