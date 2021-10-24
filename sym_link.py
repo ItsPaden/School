@@ -40,6 +40,9 @@ def summary_report():
         print("Report already generated.")
         return
 
+    #TEST
+    print(os.path.expanduser('~'))
+
     #loop through directory and os.islink, add each to array
     for file in os.listdir(os.path.expanduser('~')):
         if (os.path.islink(file)):
@@ -88,4 +91,4 @@ while (user_choice.lower() != "quit"):
         print("Summary report")
         summary_report()
     else:
-        print("Invalid Choice")
+        print()
