@@ -40,13 +40,9 @@ def summary_report():
         print("Report already generated.")
         return
 
-    #TEST
-    print(os.path.expanduser('~'))
-
     #loop through directory and os.islink, add each to array
     for file in os.listdir(os.path.expanduser('~')):
-        print(str(file))
-        if (os.path.islink(file)):
+        if (os.path.islink(os.path.expanduser('~') + "/" + file)):
             found_links.append(file) #If file is link, add to array
 
     #Printing Report
