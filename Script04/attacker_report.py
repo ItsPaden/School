@@ -10,7 +10,7 @@ from collections import Counter, defaultdict
 import re
 import os
 
-syslogPath = "C:\\Users\\Paden\\Downloads\\syslog.log"
+syslogPath = "/home/student/Documents/School/Script04/syslog.log"
 
 ips = []
 
@@ -23,7 +23,7 @@ with open(syslogPath) as syslogFile:
 #process gathered ips
 
 #Clear Console
-os.system("cls")
+os.system("clear")
 
 #Begin Report - Print date and header
 currentdate = date.today()
