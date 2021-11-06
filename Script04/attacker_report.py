@@ -47,9 +47,12 @@ for x in ips:
 # Values need to be a list to store location and count to each ip 
 for key in cnt:
   location = geolite2.lookup(key) #location lookup
-  print(type(location))
-  templist = [cnt[key], location]
-  finaldict[key] = templist
+  if location:
+    templist = [cnt[key], location.country]
+    finaldict[key] = templist
+  else: #Was having issues with .country not working, this just tests that there is indeed a location and if not marks it as such
+    templist = [cnt[key], "N/A"]
+    finaldict[key] = templist
 
 #PRINTING TABLE
 print ("{:<10} {:<10} {:<10}".format('COUNT', 'IP', 'COUNTRY'))
