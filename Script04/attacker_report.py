@@ -10,7 +10,7 @@ from collections import Counter, defaultdict
 import re
 import os
 
-syslogPath = "/home/student/Documents/School/Script04/syslog.log"
+syslogPath = "/home/student/Scripts/Script04/syslog.log"
 
 ips = []
 
@@ -57,7 +57,7 @@ for key in cnt:
 #PRINTING TABLE
 print ("{:<10} {:<10} {:<10}".format('COUNT', 'IP', 'COUNTRY'))
 
-for key, value in sorted(finaldict.items(), key=lambda x: x[1]): #sorting the values
+for key, value in sorted(finaldict.items(), key=lambda x: x[1], reverse=True): #sorting the values
     count, country = value
     print ("{:<10} {:<10} {:<10}".format(count, key, country))
 
