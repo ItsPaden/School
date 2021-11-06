@@ -34,15 +34,10 @@ def delete_link():
 
 def summary_report():
     print("Generating summary report... ")
-    #if array isnt empty, function already ran
-
-    if found_links:
-        print("Report already generated.")
-        return
 
     #loop through directory and os.islink, add each to array
     for file in os.listdir(os.path.expanduser('~')):
-        if (os.path.islink(os.path.expanduser('~') + "/" + file)):
+        if (os.path.islink(os.path.expanduser('~') + "/" + file)): #had to add the .. path to the file
             found_links.append(file) #If file is link, add to array
 
     #Printing Report
@@ -54,6 +49,9 @@ def summary_report():
         print(x)
 
     print("Total number of links: " + str(len(found_links)))
+
+    #reset list for another run if needed
+    del found_links[:]
 
 #Clear Console
 os.system("clear")
