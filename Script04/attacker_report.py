@@ -47,7 +47,8 @@ for x in ips:
 # Values need to be a list to store location and count to each ip 
 for key in cnt:
   location = geolite2.lookup(key) #location lookup
-  templist = [cnt[key], location.country]
+  print(type(location))
+  templist = [cnt[key], location]
   finaldict[key] = templist
 
 #PRINTING TABLE
