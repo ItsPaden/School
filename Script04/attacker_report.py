@@ -46,8 +46,8 @@ for x in ips:
 #iterate through dict, map each ip to location and add that location back to the dictionary
 # Values need to be a list to store location and count to each ip 
 for key in cnt:
-  location = geolite2.lookup(key).country #location lookup
-  templist = [cnt[key], location]
+  location = geolite2.lookup(key) #location lookup
+  templist = [cnt[key], location.country]
   finaldict[key] = templist
 
 #PRINTING TABLE
